@@ -1,2 +1,3 @@
-# image.ia.br
 página de venda > image.ia.br
+
+dev [euoryan](https://euoryan.com)
