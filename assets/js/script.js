@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    var LANGS = ["en", "zh", "es", "pt", "hi", "fr", "ru", "de", "ja"];
+    var LANGS = ["pt", "en", "es", "fr", "ru", "zh", "ja", "hi", "de"];
     var STORAGE_KEY = "image-ia-lang";
     var LANG_CHOSEN_KEY = "image-ia-lang-chosen";
     var THEME_KEY = "image-ia-theme";
@@ -21,7 +21,7 @@
             badge: "Domain for sale",
             lead: "This domain is available for purchase.",
             copyAria: "Copy email", copyAriaDone: "Email copied", copyDone: "Copied",
-            langPrev: "Previous language", langNext: "Next language",
+            langPrev: "Previous language", langNext: "Next language", langMenu: "All languages",
             themeLight: "Use light theme", themeDark: "Use dark theme",
             footer: "All rights reserved.",
             titleSuffix: "domain for sale",
@@ -32,7 +32,7 @@
             badge: "域名出售",
             lead: "该域名可供购买。",
             copyAria: "复制邮箱", copyAriaDone: "邮箱已复制", copyDone: "已复制",
-            langPrev: "上一个语言", langNext: "下一个语言",
+            langPrev: "上一个语言", langNext: "下一个语言", langMenu: "所有语言",
             themeLight: "使用浅色主题", themeDark: "使用深色主题",
             footer: "版权所有。",
             titleSuffix: "域名出售",
@@ -43,7 +43,7 @@
             badge: "Dominio en venta",
             lead: "Este dominio está disponible para compra.",
             copyAria: "Copiar correo", copyAriaDone: "Correo copiado", copyDone: "Copiado",
-            langPrev: "Idioma anterior", langNext: "Siguiente idioma",
+            langPrev: "Idioma anterior", langNext: "Siguiente idioma", langMenu: "Todos los idiomas",
             themeLight: "Usar tema claro", themeDark: "Usar tema oscuro",
             footer: "Todos los derechos reservados.",
             titleSuffix: "dominio en venta",
@@ -54,7 +54,7 @@
             badge: "Domínio à venda",
             lead: "Este domínio está disponível para compra.",
             copyAria: "Copiar e-mail", copyAriaDone: "E-mail copiado", copyDone: "Copiado",
-            langPrev: "Idioma anterior", langNext: "Próximo idioma",
+            langPrev: "Idioma anterior", langNext: "Próximo idioma", langMenu: "Todos os idiomas",
             themeLight: "Usar tema claro", themeDark: "Usar tema escuro",
             footer: "Todos os direitos reservados.",
             titleSuffix: "domínio à venda",
@@ -65,7 +65,7 @@
             badge: "डोमेन बिक्री के लिए",
             lead: "यह डोमेन खरीद के लिए उपलब्ध है।",
             copyAria: "ईमेल कॉपी करें", copyAriaDone: "ईमेल कॉपी हो गया", copyDone: "कॉपी हो गया",
-            langPrev: "पिछली भाषा", langNext: "अगली भाषा",
+            langPrev: "पिछली भाषा", langNext: "अगली भाषा", langMenu: "सभी भाषाएँ",
             themeLight: "लाइट थीम", themeDark: "डार्क थीम",
             footer: "सर्वाधिकार सुरक्षित।",
             titleSuffix: "डोमेन बिक्री",
@@ -76,7 +76,7 @@
             badge: "Domaine à vendre",
             lead: "Ce domaine est disponible à l'achat.",
             copyAria: "Copier l'e-mail", copyAriaDone: "E-mail copié", copyDone: "Copié",
-            langPrev: "Langue précédente", langNext: "Langue suivante",
+            langPrev: "Langue précédente", langNext: "Langue suivante", langMenu: "Toutes les langues",
             themeLight: "Thème clair", themeDark: "Thème sombre",
             footer: "Tous droits réservés.",
             titleSuffix: "domaine à vendre",
@@ -87,7 +87,7 @@
             badge: "Домен на продажу",
             lead: "Этот домен доступен для покупки.",
             copyAria: "Копировать email", copyAriaDone: "Email скопирован", copyDone: "Скопировано",
-            langPrev: "Предыдущий язык", langNext: "Следующий язык",
+            langPrev: "Предыдущий язык", langNext: "Следующий язык", langMenu: "Все языки",
             themeLight: "Светлая тема", themeDark: "Тёмная тема",
             footer: "Все права защищены.",
             titleSuffix: "домен на продажу",
@@ -98,18 +98,18 @@
             badge: "Domain zu verkaufen",
             lead: "Diese Domain steht zum Kauf zur Verfügung.",
             copyAria: "E-Mail kopieren", copyAriaDone: "E-Mail kopiert", copyDone: "Kopiert",
-            langPrev: "Vorherige Sprache", langNext: "Nächste Sprache",
+            langPrev: "Vorherige Sprache", langNext: "Nächste Sprache", langMenu: "Alle Sprachen",
             themeLight: "Helles Design", themeDark: "Dunkles Design",
             footer: "Alle Rechte vorbehalten.",
             titleSuffix: "Domain zu verkaufen",
             description: "Die Domain image.ia.br steht zum Verkauf.",
         },
         ja: {
-            label: "日本語", htmlLang: "ja",
+            label: "日本語 · Japan", htmlLang: "ja",
             badge: "ドメイン売却",
             lead: "このドメインは購入可能です。",
             copyAria: "メールをコピー", copyAriaDone: "コピーしました", copyDone: "コピー済",
-            langPrev: "前の言語", langNext: "次の言語",
+            langPrev: "前の言語", langNext: "次の言語", langMenu: "すべての言語",
             themeLight: "ライトテーマ", themeDark: "ダークテーマ",
             footer: "全著作権所有。",
             titleSuffix: "ドメイン売却",
@@ -220,6 +220,80 @@
         });
     }
 
+    function buildPicker() {
+        var menu = document.querySelector("[data-lang-picker-menu]");
+        if (!menu) return;
+
+        menu.innerHTML = "";
+        LANGS.forEach(function (code) {
+            var li = document.createElement("li");
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "lang-picker__option";
+            btn.setAttribute("role", "option");
+            btn.setAttribute("data-lang", code);
+            btn.textContent = T[code].label;
+            btn.addEventListener("click", function () {
+                closePicker();
+                switchLang(code, true);
+            });
+            li.appendChild(btn);
+            menu.appendChild(li);
+        });
+    }
+
+    function updatePickerActive(lang) {
+        document.querySelectorAll(".lang-picker__option").forEach(function (btn) {
+            var on = btn.getAttribute("data-lang") === lang;
+            btn.classList.toggle("is-active", on);
+            btn.setAttribute("aria-selected", on ? "true" : "false");
+        });
+    }
+
+    function closePicker() {
+        var root = document.querySelector("[data-lang-picker]");
+        var toggle = document.querySelector("[data-lang-picker-toggle]");
+        var menu = document.querySelector("[data-lang-picker-menu]");
+        if (!root || !toggle || !menu) return;
+        root.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        menu.hidden = true;
+    }
+
+    function openPicker() {
+        var root = document.querySelector("[data-lang-picker]");
+        var toggle = document.querySelector("[data-lang-picker-toggle]");
+        var menu = document.querySelector("[data-lang-picker-menu]");
+        if (!root || !toggle || !menu) return;
+        root.classList.add("is-open");
+        toggle.setAttribute("aria-expanded", "true");
+        menu.hidden = false;
+        updatePickerActive(currentLang);
+    }
+
+    function bindPicker() {
+        var toggle = document.querySelector("[data-lang-picker-toggle]");
+        if (!toggle) return;
+
+        toggle.addEventListener("click", function (e) {
+            e.stopPropagation();
+            var menu = document.querySelector("[data-lang-picker-menu]");
+            if (menu && !menu.hidden) {
+                closePicker();
+            } else {
+                openPicker();
+            }
+        });
+
+        document.addEventListener("click", function (e) {
+            if (!e.target.closest("[data-lang-picker]")) closePicker();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closePicker();
+        });
+    }
+
     function setCarouselPosition(lang, animate) {
         var track = document.querySelector(".lang-carousel__track");
         if (!track) return;
@@ -265,10 +339,12 @@
 
         var theme = document.documentElement.getAttribute("data-theme") || "light";
         applyTheme(theme);
+        updatePickerActive(lang);
     }
 
     function switchLang(lang, animate) {
         if (!T[lang] || lang === currentLang) return;
+        closePicker();
         apply(lang, true);
         setCarouselPosition(lang, animate);
     }
@@ -384,10 +460,12 @@
     }
 
     buildCarousel();
+    buildPicker();
     var init = initialLang();
     apply(init.lang, init.persist);
     setCarouselPosition(init.lang, false);
     bindTheme();
     bindCarousel();
+    bindPicker();
     bindCopy();
 })();

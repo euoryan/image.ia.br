@@ -59,16 +59,24 @@
                 </span>
             </button>
 
-            <div class="lang-carousel" data-lang-carousel>
-                <button type="button" class="lang-carousel__nav lang-carousel__prev" data-i18n-aria="langPrev" aria-label="Idioma anterior">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-                </button>
-                <div class="lang-carousel__window" tabindex="0" aria-live="polite">
-                    <div class="lang-carousel__track"></div>
+            <div class="lang-bar">
+                <div class="lang-carousel" data-lang-carousel>
+                    <button type="button" class="lang-carousel__nav lang-carousel__prev" data-i18n-aria="langPrev" aria-label="Idioma anterior">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <div class="lang-carousel__window" tabindex="0" aria-live="polite">
+                        <div class="lang-carousel__track"></div>
+                    </div>
+                    <button type="button" class="lang-carousel__nav lang-carousel__next" data-i18n-aria="langNext" aria-label="Próximo idioma">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
                 </div>
-                <button type="button" class="lang-carousel__nav lang-carousel__next" data-i18n-aria="langNext" aria-label="Próximo idioma">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-                </button>
+                <div class="lang-picker" data-lang-picker>
+                    <button type="button" class="lang-picker__toggle" data-lang-picker-toggle aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="langMenu" aria-label="Todos os idiomas">
+                        <span aria-hidden="true">···</span>
+                    </button>
+                    <ul class="lang-picker__menu" data-lang-picker-menu role="listbox" hidden></ul>
+                </div>
             </div>
 
         </div>
