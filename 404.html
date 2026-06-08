@@ -7,6 +7,17 @@
     <title>404 — image.ia.br</title>
     <script>
     (function () {
+        var k = "image-ia-theme";
+        var t = null;
+        try { t = localStorage.getItem(k); } catch (e) {}
+        if (t !== "light" && t !== "dark") {
+            t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+    })();
+    </script>
+    <script>
+    (function () {
         if (location.protocol === "file:") return;
         var seg = "/image.ia.br";
         var path = location.pathname;

@@ -3,6 +3,8 @@
 
     var LANGS = ["pt", "en", "es"];
     var STORAGE_KEY = "image-ia-lang";
+    var LANG_CHOSEN_KEY = "image-ia-lang-chosen";
+    var THEME_KEY = "image-ia-theme";
     var COPY_MS = 2000;
     var SITE = "image.ia.br";
     var SWIPE_MIN = 36;
@@ -22,6 +24,9 @@
             copyDone: "Copiado",
             langPrev: "Idioma anterior",
             langNext: "Próximo idioma",
+            themeToggle: "Alternar tema",
+            themeLight: "Usar tema claro",
+            themeDark: "Usar tema escuro",
             footer: "Todos os direitos reservados.",
             titleSuffix: "domínio à venda",
             description: "O domínio image.ia.br está à venda.",
@@ -35,6 +40,9 @@
             copyDone: "Copied",
             langPrev: "Previous language",
             langNext: "Next language",
+            themeToggle: "Toggle theme",
+            themeLight: "Use light theme",
+            themeDark: "Use dark theme",
             footer: "All rights reserved.",
             titleSuffix: "domain for sale",
             description: "The domain image.ia.br is for sale.",
@@ -48,6 +56,9 @@
             copyDone: "Copiado",
             langPrev: "Idioma anterior",
             langNext: "Siguiente idioma",
+            themeToggle: "Cambiar tema",
+            themeLight: "Usar tema claro",
+            themeDark: "Usar tema oscuro",
             footer: "Todos los derechos reservados.",
             titleSuffix: "dominio en venta",
             description: "El dominio image.ia.br está en venta.",
@@ -59,17 +70,81 @@
         return LANGS.indexOf(lang);
     }
 
+    function detectBrowserLang() {
+        var list = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || "pt"];
+
+        for (var i = 0; i < list.length; i++) {
+            var tag = (list[i] || "").toLowerCase();
+            if (tag.indexOf("en") === 0) return "en";
+            if (tag.indexOf("es") === 0) return "es";
+            if (tag.indexOf("pt") === 0) return "pt";
+        }
+        return "pt";
+    }
+
     function initialLang() {
         var q = new URLSearchParams(location.search).get("lang");
-        if (q && LANGS.indexOf(q) >= 0) return q;
+        if (q && LANGS.indexOf(q) >= 0) {
+            return { lang: q, persist: true };
+        }
+
         try {
-            var s = localStorage.getItem(STORAGE_KEY);
-            if (s && LANGS.indexOf(s) >= 0) return s;
+            if (localStorage.getItem(LANG_CHOSEN_KEY) === "1") {
+                var saved = localStorage.getItem(STORAGE_KEY);
+                if (saved && LANGS.indexOf(saved) >= 0) {
+                    return { lang: saved, persist: true };
+                }
+            }
         } catch (e) { /* ignore */ }
-        var n = (navigator.language || "").toLowerCase();
-        if (n.startsWith("en")) return "en";
-        if (n.startsWith("es")) return "es";
-        return "pt";
+
+        return { lang: detectBrowserLang(), persist: false };
+    }
+
+    function systemTheme() {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+
+    function getStoredTheme() {
+        try {
+            var stored = localStorage.getItem(THEME_KEY);
+            if (stored === "light" || stored === "dark") return stored;
+        } catch (e) { /* ignore */ }
+        return null;
+    }
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) {
+            meta.setAttribute("content", theme === "dark" ? "#0b0b0b" : "#ffffff");
+        }
+
+        var btn = document.querySelector("[data-theme-toggle]");
+        if (btn) {
+            var label = theme === "dark" ? T[currentLang].themeLight : T[currentLang].themeDark;
+            btn.setAttribute("aria-label", label);
+        }
+    }
+
+    function bindTheme() {
+        var btn = document.querySelector("[data-theme-toggle]");
+        if (!btn) return;
+
+        btn.addEventListener("click", function () {
+            var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+            try {
+                localStorage.setItem(THEME_KEY, next);
+            } catch (e) { /* ignore */ }
+            applyTheme(next);
+        });
+
+        var mq = window.matchMedia("(prefers-color-scheme: dark)");
+        mq.addEventListener("change", function () {
+            if (!getStoredTheme()) applyTheme(systemTheme());
+        });
     }
 
     function syncUrl(lang) {
@@ -93,7 +168,7 @@
         track.style.transform = "translateX(-" + idx * 100 + "%)";
     }
 
-    function apply(lang) {
+    function apply(lang, persist) {
         var t = T[lang];
         if (!t) return;
 
@@ -116,16 +191,22 @@
             if (t[k] !== undefined) el.setAttribute("aria-label", t[k]);
         });
 
-        try {
-            localStorage.setItem(STORAGE_KEY, lang);
-        } catch (e) { /* ignore */ }
+        if (persist) {
+            try {
+                localStorage.setItem(STORAGE_KEY, lang);
+                localStorage.setItem(LANG_CHOSEN_KEY, "1");
+            } catch (e) { /* ignore */ }
+        }
 
         syncUrl(lang);
+
+        var theme = document.documentElement.getAttribute("data-theme") || "light";
+        applyTheme(theme);
     }
 
     function switchLang(lang, animate) {
         if (!T[lang] || lang === currentLang) return;
-        apply(lang);
+        apply(lang, true);
         setCarouselPosition(lang, animate);
     }
 
@@ -239,9 +320,10 @@
         });
     }
 
-    var lang = initialLang();
-    apply(lang);
-    setCarouselPosition(lang, false);
+    var init = initialLang();
+    apply(init.lang, init.persist);
+    setCarouselPosition(init.lang, false);
+    bindTheme();
     bindCarousel();
     bindCopy();
 })();
