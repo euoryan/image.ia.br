@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <title>404 — image.ia.br</title>
+    <script>
+    (function () {
+        if (location.protocol === "file:") return;
+        var seg = "/image.ia.br";
+        var path = location.pathname;
+        var base = (path === seg || path.indexOf(seg + "/") === 0) ? seg + "/" : "/";
+        document.write('<base href="' + base + '">');
+    })();
+    </script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="page-404">
+    <main class="page">
+        <div class="wrap">
+            <p class="err">404</p>
+            <h1 class="domain">image<span class="dot">.</span><span class="tld">ia.br</span></h1>
+            <p class="lead">Página não encontrada.</p>
+            <a class="back" href="/">Voltar</a>
+        </div>
+    </main>
+</body>
+</html>

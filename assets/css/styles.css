@@ -1,0 +1,330 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #ffffff;
+    --bg-subtle: #f7f7f6;
+    --text: #171717;
+    --muted: #737373;
+    --faint: #a3a3a3;
+    --border: #e8e8e6;
+    --border-hover: #d8d8d5;
+    --moss: #4f6f52;
+    --moss-hover: #3d5840;
+    --moss-soft: rgba(79, 111, 82, 0.07);
+    --moss-border: rgba(79, 111, 82, 0.32);
+    --moss-copied: rgba(79, 111, 82, 0.1);
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "Cascadia Code", "JetBrains Mono", monospace;
+    --radius: 8px;
+    --max: 28rem;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--sans);
+    line-height: 1.5;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:not(.email-copy):not(.lang-carousel__nav) {
+    background: none;
+    border: none;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--moss);
+    outline-offset: 2px;
+}
+
+.page {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem 4rem;
+}
+
+.wrap {
+    width: 100%;
+    max-width: var(--max);
+}
+
+.eyebrow {
+    margin-bottom: 1.25rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.domain {
+    font-size: clamp(2.25rem, 10vw, 3.25rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+}
+
+.domain .dot {
+    color: var(--moss);
+    font-weight: 400;
+}
+
+.domain .tld {
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.lead {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #5a5a5a;
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+    line-height: 1.55;
+}
+
+button.email-copy {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: 2.125rem;
+    margin-bottom: 1.125rem;
+    padding: 0.3125rem 0.375rem 0.3125rem 0.6875rem;
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: left;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+button.email-copy:hover:not(.is-copied) {
+    border-color: var(--moss-border);
+    background: var(--moss-soft);
+}
+
+button.email-copy.is-copied {
+    border-color: var(--moss-border);
+    background: var(--moss-copied);
+}
+
+button.email-copy .email-copy__text {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--muted);
+}
+
+button.email-copy:hover:not(.is-copied) .email-copy__text,
+button.email-copy.is-copied .email-copy__text {
+    color: var(--text);
+}
+
+button.email-copy .email-copy__side {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    flex-shrink: 0;
+}
+
+button.email-copy .email-copy__done {
+    display: none;
+    font-family: var(--sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--moss);
+    white-space: nowrap;
+}
+
+button.email-copy.is-copied .email-copy__done {
+    display: block;
+}
+
+button.email-copy .email-copy__icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 1.375rem;
+    height: 1.375rem;
+    color: var(--faint);
+    transition: color 0.12s ease;
+}
+
+button.email-copy .email-copy__icon svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.875rem;
+    height: 0.875rem;
+    margin: -0.4375rem 0 0 -0.4375rem;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+    pointer-events: none;
+}
+
+button.email-copy .email-copy__icon .icon-copy {
+    opacity: 1;
+    transform: scale(1);
+}
+
+button.email-copy:hover:not(.is-copied) .email-copy__icon {
+    color: var(--moss);
+}
+
+button.email-copy.is-copied .email-copy__icon {
+    color: var(--moss);
+}
+
+button.email-copy.is-copied .email-copy__icon .icon-copy {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+button.email-copy.is-copied .email-copy__icon .icon-copied {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.lang-carousel {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+    padding: 0.1875rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    user-select: none;
+    touch-action: pan-y;
+}
+
+.lang-carousel__window {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.lang-carousel__window:focus-visible {
+    outline: 2px solid var(--moss);
+    outline-offset: 1px;
+}
+
+.lang-carousel__track {
+    display: flex;
+    will-change: transform;
+}
+
+.lang-carousel__track.is-animating {
+    transition: transform 0.15s ease;
+}
+
+.lang-carousel__slide {
+    flex: 0 0 100%;
+    padding: 0.3125rem 0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.25rem;
+    text-align: center;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.lang-carousel__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    transition: color 0.12s ease, background 0.12s ease;
+}
+
+.lang-carousel__nav:hover {
+    color: var(--moss);
+    background: var(--moss-soft);
+}
+
+.lang-carousel__nav:active {
+    color: var(--moss-hover);
+}
+
+.footer {
+    padding: 1.125rem 1.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--faint);
+    border-top: 1px solid var(--border);
+}
+
+.footer a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.12s ease;
+}
+
+.footer a:hover {
+    color: var(--moss);
+}
+
+/* 404 */
+.page-404 .page {
+    text-align: center;
+}
+
+.page-404 .err {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: var(--faint);
+    margin-bottom: 0.5rem;
+}
+
+.page-404 .back {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.12s ease;
+}
+
+.page-404 .back:hover {
+    color: var(--moss);
+}
