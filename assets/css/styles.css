@@ -333,15 +333,6 @@ button.email-copy.is-copied .email-copy__icon .icon-copied {
     text-overflow: ellipsis;
 }
 
-[dir="rtl"] button.email-copy {
-    text-align: right;
-}
-
-[dir="rtl"] .theme-toggle {
-    right: auto;
-    left: 1rem;
-}
-
 .lang-carousel__nav {
     display: flex;
     align-items: center;

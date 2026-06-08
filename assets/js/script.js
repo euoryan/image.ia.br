@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    var LANGS = ["en", "zh", "es", "pt", "hi", "ar", "fr", "ru", "de", "ja"];
+    var LANGS = ["en", "zh", "es", "pt", "hi", "fr", "ru", "de", "ja"];
     var STORAGE_KEY = "image-ia-lang";
     var LANG_CHOSEN_KEY = "image-ia-lang-chosen";
     var THEME_KEY = "image-ia-theme";
@@ -17,7 +17,7 @@
 
     var T = {
         en: {
-            label: "English", htmlLang: "en", rtl: false,
+            label: "English", htmlLang: "en",
             badge: "Domain for sale",
             lead: "This domain is available for purchase.",
             copyAria: "Copy email", copyAriaDone: "Email copied", copyDone: "Copied",
@@ -28,7 +28,7 @@
             description: "The domain image.ia.br is for sale.",
         },
         zh: {
-            label: "中文", htmlLang: "zh-CN", rtl: false,
+            label: "中文", htmlLang: "zh-CN",
             badge: "域名出售",
             lead: "该域名可供购买。",
             copyAria: "复制邮箱", copyAriaDone: "邮箱已复制", copyDone: "已复制",
@@ -39,7 +39,7 @@
             description: "域名 image.ia.br 正在出售。",
         },
         es: {
-            label: "Español", htmlLang: "es", rtl: false,
+            label: "Español", htmlLang: "es",
             badge: "Dominio en venta",
             lead: "Este dominio está disponible para compra.",
             copyAria: "Copiar correo", copyAriaDone: "Correo copiado", copyDone: "Copiado",
@@ -50,7 +50,7 @@
             description: "El dominio image.ia.br está en venta.",
         },
         pt: {
-            label: "Português", htmlLang: "pt-BR", rtl: false,
+            label: "Português", htmlLang: "pt-BR",
             badge: "Domínio à venda",
             lead: "Este domínio está disponível para compra.",
             copyAria: "Copiar e-mail", copyAriaDone: "E-mail copiado", copyDone: "Copiado",
@@ -61,7 +61,7 @@
             description: "O domínio image.ia.br está à venda.",
         },
         hi: {
-            label: "हिन्दी", htmlLang: "hi", rtl: false,
+            label: "हिन्दी", htmlLang: "hi",
             badge: "डोमेन बिक्री के लिए",
             lead: "यह डोमेन खरीद के लिए उपलब्ध है।",
             copyAria: "ईमेल कॉपी करें", copyAriaDone: "ईमेल कॉपी हो गया", copyDone: "कॉपी हो गया",
@@ -71,19 +71,8 @@
             titleSuffix: "डोमेन बिक्री",
             description: "डोमेन image.ia.br बिक्री के लिए है।",
         },
-        ar: {
-            label: "العربية", htmlLang: "ar", rtl: true,
-            badge: "نطاق للبيع",
-            lead: "هذا النطاق متاح للشراء.",
-            copyAria: "نسخ البريد", copyAriaDone: "تم نسخ البريد", copyDone: "تم النسخ",
-            langPrev: "اللغة السابقة", langNext: "اللغة التالية",
-            themeLight: "سمة فاتحة", themeDark: "سمة داكنة",
-            footer: "جميع الحقوق محفوظة.",
-            titleSuffix: "نطاق للبيع",
-            description: "النطاق image.ia.br معروض للبيع.",
-        },
         fr: {
-            label: "Français", htmlLang: "fr", rtl: false,
+            label: "Français", htmlLang: "fr",
             badge: "Domaine à vendre",
             lead: "Ce domaine est disponible à l'achat.",
             copyAria: "Copier l'e-mail", copyAriaDone: "E-mail copié", copyDone: "Copié",
@@ -94,7 +83,7 @@
             description: "Le domaine image.ia.br est à vendre.",
         },
         ru: {
-            label: "Русский", htmlLang: "ru", rtl: false,
+            label: "Русский", htmlLang: "ru",
             badge: "Домен на продажу",
             lead: "Этот домен доступен для покупки.",
             copyAria: "Копировать email", copyAriaDone: "Email скопирован", copyDone: "Скопировано",
@@ -105,7 +94,7 @@
             description: "Домен image.ia.br продаётся.",
         },
         de: {
-            label: "Deutsch", htmlLang: "de", rtl: false,
+            label: "Deutsch", htmlLang: "de",
             badge: "Domain zu verkaufen",
             lead: "Diese Domain steht zum Kauf zur Verfügung.",
             copyAria: "E-Mail kopieren", copyAriaDone: "E-Mail kopiert", copyDone: "Kopiert",
@@ -116,7 +105,7 @@
             description: "Die Domain image.ia.br steht zum Verkauf.",
         },
         ja: {
-            label: "日本語", htmlLang: "ja", rtl: false,
+            label: "日本語", htmlLang: "ja",
             badge: "ドメイン売却",
             lead: "このドメインは購入可能です。",
             copyAria: "メールをコピー", copyAriaDone: "コピーしました", copyDone: "コピー済",
@@ -248,7 +237,7 @@
         currentLang = lang;
 
         document.documentElement.lang = t.htmlLang;
-        document.documentElement.dir = t.rtl ? "rtl" : "ltr";
+        document.documentElement.removeAttribute("dir");
         document.title = pageTitle(t.titleSuffix);
 
         var meta = document.querySelector('meta[name="description"]');
@@ -337,10 +326,10 @@
         windowEl.addEventListener("keydown", function (e) {
             if (e.key === "ArrowLeft") {
                 e.preventDefault();
-                cycleLang(document.documentElement.dir === "rtl" ? 1 : -1);
+                cycleLang(-1);
             } else if (e.key === "ArrowRight") {
                 e.preventDefault();
-                cycleLang(document.documentElement.dir === "rtl" ? -1 : 1);
+                cycleLang(1);
             }
         });
     }
