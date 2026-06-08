@@ -198,13 +198,8 @@
 
     function syncUrl(lang) {
         var url = new URL(location.href);
-        if (lang === "pt") {
-            url.searchParams.delete("lang");
-        } else {
-            url.searchParams.set("lang", lang);
-        }
-        var qs = url.searchParams.toString();
-        history.replaceState(null, "", url.pathname + (qs ? "?" + qs : "") + url.hash);
+        url.searchParams.set("lang", lang);
+        history.replaceState(null, "", url.pathname + "?" + url.searchParams.toString() + url.hash);
     }
 
     function buildCarousel() {

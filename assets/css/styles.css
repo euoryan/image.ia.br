@@ -286,63 +286,37 @@ button.email-copy.is-copied .email-copy__icon .icon-copied {
 }
 
 .lang-bar {
-    display: flex;
-    align-items: stretch;
     width: 100%;
-    min-height: 2.125rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    transition: border-color 0.12s ease, background 0.12s ease;
-}
-
-.lang-bar:hover,
-.lang-bar:has(.lang-picker__toggle[aria-expanded="true"]) {
-    border-color: var(--moss-border);
-    background: var(--moss-soft);
 }
 
 .lang-carousel {
     display: flex;
     align-items: center;
     gap: 0.125rem;
-    flex: 1;
-    min-width: 0;
-    padding: 0.3125rem 0.25rem 0.3125rem 0.375rem;
-    background: transparent;
-    border: none;
+    width: 100%;
+    min-height: 1.875rem;
+    padding: 0.1875rem 0.25rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     user-select: none;
     touch-action: pan-y;
+    transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.lang-carousel:hover,
+.lang-carousel:has(.lang-picker__toggle[aria-expanded="true"]) {
+    border-color: var(--moss-border);
+    background: var(--moss-soft);
 }
 
 .lang-picker {
     position: relative;
     flex-shrink: 0;
-    border-left: 1px solid var(--border);
-}
-
-.lang-bar:hover .lang-picker,
-.lang-bar:has(.lang-picker__toggle[aria-expanded="true"]) .lang-picker {
-    border-left-color: var(--moss-border);
 }
 
 .lang-picker__toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3125rem;
-    height: 100%;
-    min-height: 2.125rem;
-    padding: 0 0.6875rem;
-    font-size: 0.6875rem;
-    font-weight: 500;
-    line-height: 1;
-    color: var(--muted);
-    background: transparent;
-    border: none;
-    border-radius: 0 var(--radius) var(--radius) 0;
-    white-space: nowrap;
-    transition: color 0.12s ease, background 0.12s ease;
+    padding: 0;
 }
 
 .lang-picker__toggle:hover,
@@ -352,7 +326,7 @@ button.email-copy.is-copied .email-copy__icon .icon-copied {
 
 .lang-picker__chevron {
     position: relative;
-    flex-shrink: 0;
+    display: block;
     width: 0.875rem;
     height: 0.875rem;
 }
@@ -364,7 +338,7 @@ button.email-copy.is-copied .email-copy__icon .icon-copied {
     width: 0.75rem;
     height: 0.75rem;
     margin: -0.375rem 0 0 -0.375rem;
-    transition: opacity 0.12s ease, transform 0.12s ease;
+    transition: opacity 0.12s ease;
 }
 
 .lang-picker__toggle .icon-chevron-up {
@@ -419,14 +393,14 @@ button.email-copy.is-copied .email-copy__icon .icon-copied {
 .lang-picker__option {
     display: block;
     width: 100%;
-    padding: 0.4375rem 0.625rem;
-    font-size: 0.75rem;
+    padding: 0.375rem 0.5625rem;
+    font-size: 0.6875rem;
     font-weight: 500;
     text-align: left;
     color: var(--text);
     background: transparent;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     transition: background 0.1s ease, color 0.1s ease;
 }
 
@@ -462,11 +436,11 @@ button.email-copy.is-copied .email-copy__icon .icon-copied {
 
 .lang-carousel__slide {
     flex: 0 0 100%;
-    padding: 0.25rem 0.375rem;
-    font-size: 0.8125rem;
+    padding: 0.125rem 0.25rem;
+    font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.01em;
-    line-height: 1.2;
+    line-height: 1.125rem;
     text-align: center;
     color: var(--text);
     white-space: nowrap;
@@ -478,19 +452,19 @@ button.email-copy.is-copied .email-copy__icon .icon-copied {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.375rem;
+    height: 1.375rem;
     flex-shrink: 0;
     color: var(--muted);
     background: transparent;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     transition: color 0.12s ease, background 0.12s ease;
 }
 
 .lang-carousel__nav svg {
-    width: 0.875rem;
-    height: 0.875rem;
+    width: 0.75rem;
+    height: 0.75rem;
 }
 
 .lang-carousel__nav:hover {

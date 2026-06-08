@@ -29,7 +29,7 @@
         document.write('<base href="' + base + '">');
     })();
     </script>
-    <link rel="stylesheet" href="assets/css/styles.css?v=9">
+    <link rel="stylesheet" href="assets/css/styles.css?v=10">
 </head>
 <body>
     <button type="button" class="theme-toggle" data-theme-toggle data-i18n-aria="themeDark" aria-label="Usar tema escuro">
@@ -67,19 +67,18 @@
                     <div class="lang-carousel__window" tabindex="0" aria-live="polite">
                         <div class="lang-carousel__track"></div>
                     </div>
+                    <div class="lang-picker" data-lang-picker>
+                        <button type="button" class="lang-carousel__nav lang-picker__toggle" data-lang-picker-toggle aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="langMenu" aria-label="Escolher idioma">
+                            <span class="lang-picker__chevron" aria-hidden="true">
+                                <svg class="icon-chevron-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                <svg class="icon-chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                            </span>
+                        </button>
+                        <ul class="lang-picker__menu" data-lang-picker-menu role="listbox" hidden></ul>
+                    </div>
                     <button type="button" class="lang-carousel__nav lang-carousel__next" data-i18n-aria="langNext" aria-label="Próximo idioma">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                     </button>
-                </div>
-                <div class="lang-picker" data-lang-picker>
-                    <button type="button" class="lang-picker__toggle" data-lang-picker-toggle aria-haspopup="listbox" aria-expanded="false" data-i18n-aria="langMenu" aria-label="Escolher idioma">
-                        <span class="lang-picker__label" data-i18n="langChoose">escolher</span>
-                        <span class="lang-picker__chevron" aria-hidden="true">
-                            <svg class="icon-chevron-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-                            <svg class="icon-chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                        </span>
-                    </button>
-                    <ul class="lang-picker__menu" data-lang-picker-menu role="listbox" hidden></ul>
                 </div>
             </div>
 
@@ -90,6 +89,6 @@
         <p>© 2026 <a href="mailto:contato@euoryan.com">Ryan</a> · <span data-i18n="footer">Todos os direitos reservados.</span></p>
     </footer>
 
-    <script src="assets/js/script.js?v=9"></script>
+    <script src="assets/js/script.js?v=10"></script>
 </body>
 </html>
