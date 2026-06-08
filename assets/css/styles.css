@@ -321,7 +321,7 @@ button.email-copy.is-copied .email-copy__icon .icon-copied {
 
 .lang-carousel__slide {
     flex: 0 0 100%;
-    padding: 0.3125rem 0;
+    padding: 0.3125rem 0.25rem;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -329,6 +329,17 @@ button.email-copy.is-copied .email-copy__icon .icon-copied {
     text-align: center;
     color: var(--text);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+[dir="rtl"] button.email-copy {
+    text-align: right;
+}
+
+[dir="rtl"] .theme-toggle {
+    right: auto;
+    left: 1rem;
 }
 
 .lang-carousel__nav {

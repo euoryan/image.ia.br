@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    var LANGS = ["pt", "en", "es"];
+    var LANGS = ["en", "zh", "es", "pt", "hi", "ar", "fr", "ru", "de", "ja"];
     var STORAGE_KEY = "image-ia-lang";
     var LANG_CHOSEN_KEY = "image-ia-lang-chosen";
     var THEME_KEY = "image-ia-theme";
@@ -16,53 +16,115 @@
     }
 
     var T = {
-        pt: {
-            badge: "Domínio à venda",
-            lead: "Este domínio está disponível para compra.",
-            copyAria: "Copiar e-mail",
-            copyAriaDone: "E-mail copiado",
-            copyDone: "Copiado",
-            langPrev: "Idioma anterior",
-            langNext: "Próximo idioma",
-            themeToggle: "Alternar tema",
-            themeLight: "Usar tema claro",
-            themeDark: "Usar tema escuro",
-            footer: "Todos os direitos reservados.",
-            titleSuffix: "domínio à venda",
-            description: "O domínio image.ia.br está à venda.",
-            htmlLang: "pt-BR",
-        },
         en: {
+            label: "English", htmlLang: "en", rtl: false,
             badge: "Domain for sale",
             lead: "This domain is available for purchase.",
-            copyAria: "Copy email",
-            copyAriaDone: "Email copied",
-            copyDone: "Copied",
-            langPrev: "Previous language",
-            langNext: "Next language",
-            themeToggle: "Toggle theme",
-            themeLight: "Use light theme",
-            themeDark: "Use dark theme",
+            copyAria: "Copy email", copyAriaDone: "Email copied", copyDone: "Copied",
+            langPrev: "Previous language", langNext: "Next language",
+            themeLight: "Use light theme", themeDark: "Use dark theme",
             footer: "All rights reserved.",
             titleSuffix: "domain for sale",
             description: "The domain image.ia.br is for sale.",
-            htmlLang: "en",
+        },
+        zh: {
+            label: "中文", htmlLang: "zh-CN", rtl: false,
+            badge: "域名出售",
+            lead: "该域名可供购买。",
+            copyAria: "复制邮箱", copyAriaDone: "邮箱已复制", copyDone: "已复制",
+            langPrev: "上一个语言", langNext: "下一个语言",
+            themeLight: "使用浅色主题", themeDark: "使用深色主题",
+            footer: "版权所有。",
+            titleSuffix: "域名出售",
+            description: "域名 image.ia.br 正在出售。",
         },
         es: {
+            label: "Español", htmlLang: "es", rtl: false,
             badge: "Dominio en venta",
             lead: "Este dominio está disponible para compra.",
-            copyAria: "Copiar correo",
-            copyAriaDone: "Correo copiado",
-            copyDone: "Copiado",
-            langPrev: "Idioma anterior",
-            langNext: "Siguiente idioma",
-            themeToggle: "Cambiar tema",
-            themeLight: "Usar tema claro",
-            themeDark: "Usar tema oscuro",
+            copyAria: "Copiar correo", copyAriaDone: "Correo copiado", copyDone: "Copiado",
+            langPrev: "Idioma anterior", langNext: "Siguiente idioma",
+            themeLight: "Usar tema claro", themeDark: "Usar tema oscuro",
             footer: "Todos los derechos reservados.",
             titleSuffix: "dominio en venta",
             description: "El dominio image.ia.br está en venta.",
-            htmlLang: "es",
+        },
+        pt: {
+            label: "Português", htmlLang: "pt-BR", rtl: false,
+            badge: "Domínio à venda",
+            lead: "Este domínio está disponível para compra.",
+            copyAria: "Copiar e-mail", copyAriaDone: "E-mail copiado", copyDone: "Copiado",
+            langPrev: "Idioma anterior", langNext: "Próximo idioma",
+            themeLight: "Usar tema claro", themeDark: "Usar tema escuro",
+            footer: "Todos os direitos reservados.",
+            titleSuffix: "domínio à venda",
+            description: "O domínio image.ia.br está à venda.",
+        },
+        hi: {
+            label: "हिन्दी", htmlLang: "hi", rtl: false,
+            badge: "डोमेन बिक्री के लिए",
+            lead: "यह डोमेन खरीद के लिए उपलब्ध है।",
+            copyAria: "ईमेल कॉपी करें", copyAriaDone: "ईमेल कॉपी हो गया", copyDone: "कॉपी हो गया",
+            langPrev: "पिछली भाषा", langNext: "अगली भाषा",
+            themeLight: "लाइट थीम", themeDark: "डार्क थीम",
+            footer: "सर्वाधिकार सुरक्षित।",
+            titleSuffix: "डोमेन बिक्री",
+            description: "डोमेन image.ia.br बिक्री के लिए है।",
+        },
+        ar: {
+            label: "العربية", htmlLang: "ar", rtl: true,
+            badge: "نطاق للبيع",
+            lead: "هذا النطاق متاح للشراء.",
+            copyAria: "نسخ البريد", copyAriaDone: "تم نسخ البريد", copyDone: "تم النسخ",
+            langPrev: "اللغة السابقة", langNext: "اللغة التالية",
+            themeLight: "سمة فاتحة", themeDark: "سمة داكنة",
+            footer: "جميع الحقوق محفوظة.",
+            titleSuffix: "نطاق للبيع",
+            description: "النطاق image.ia.br معروض للبيع.",
+        },
+        fr: {
+            label: "Français", htmlLang: "fr", rtl: false,
+            badge: "Domaine à vendre",
+            lead: "Ce domaine est disponible à l'achat.",
+            copyAria: "Copier l'e-mail", copyAriaDone: "E-mail copié", copyDone: "Copié",
+            langPrev: "Langue précédente", langNext: "Langue suivante",
+            themeLight: "Thème clair", themeDark: "Thème sombre",
+            footer: "Tous droits réservés.",
+            titleSuffix: "domaine à vendre",
+            description: "Le domaine image.ia.br est à vendre.",
+        },
+        ru: {
+            label: "Русский", htmlLang: "ru", rtl: false,
+            badge: "Домен на продажу",
+            lead: "Этот домен доступен для покупки.",
+            copyAria: "Копировать email", copyAriaDone: "Email скопирован", copyDone: "Скопировано",
+            langPrev: "Предыдущий язык", langNext: "Следующий язык",
+            themeLight: "Светлая тема", themeDark: "Тёмная тема",
+            footer: "Все права защищены.",
+            titleSuffix: "домен на продажу",
+            description: "Домен image.ia.br продаётся.",
+        },
+        de: {
+            label: "Deutsch", htmlLang: "de", rtl: false,
+            badge: "Domain zu verkaufen",
+            lead: "Diese Domain steht zum Kauf zur Verfügung.",
+            copyAria: "E-Mail kopieren", copyAriaDone: "E-Mail kopiert", copyDone: "Kopiert",
+            langPrev: "Vorherige Sprache", langNext: "Nächste Sprache",
+            themeLight: "Helles Design", themeDark: "Dunkles Design",
+            footer: "Alle Rechte vorbehalten.",
+            titleSuffix: "Domain zu verkaufen",
+            description: "Die Domain image.ia.br steht zum Verkauf.",
+        },
+        ja: {
+            label: "日本語", htmlLang: "ja", rtl: false,
+            badge: "ドメイン売却",
+            lead: "このドメインは購入可能です。",
+            copyAria: "メールをコピー", copyAriaDone: "コピーしました", copyDone: "コピー済",
+            langPrev: "前の言語", langNext: "次の言語",
+            themeLight: "ライトテーマ", themeDark: "ダークテーマ",
+            footer: "全著作権所有。",
+            titleSuffix: "ドメイン売却",
+            description: "ドメイン image.ia.br は売却中です。",
         },
     };
 
@@ -76,10 +138,8 @@
             : [navigator.language || "pt"];
 
         for (var i = 0; i < list.length; i++) {
-            var tag = (list[i] || "").toLowerCase();
-            if (tag.indexOf("en") === 0) return "en";
-            if (tag.indexOf("es") === 0) return "es";
-            if (tag.indexOf("pt") === 0) return "pt";
+            var base = (list[i] || "").toLowerCase().split("-")[0];
+            if (LANGS.indexOf(base) >= 0) return base;
         }
         return "pt";
     }
@@ -123,7 +183,7 @@
         }
 
         var btn = document.querySelector("[data-theme-toggle]");
-        if (btn) {
+        if (btn && T[currentLang]) {
             var label = theme === "dark" ? T[currentLang].themeLight : T[currentLang].themeDark;
             btn.setAttribute("aria-label", label);
         }
@@ -158,6 +218,19 @@
         history.replaceState(null, "", url.pathname + (qs ? "?" + qs : "") + url.hash);
     }
 
+    function buildCarousel() {
+        var track = document.querySelector(".lang-carousel__track");
+        if (!track) return;
+
+        track.innerHTML = "";
+        LANGS.forEach(function (code) {
+            var slide = document.createElement("span");
+            slide.className = "lang-carousel__slide";
+            slide.textContent = T[code].label;
+            track.appendChild(slide);
+        });
+    }
+
     function setCarouselPosition(lang, animate) {
         var track = document.querySelector(".lang-carousel__track");
         if (!track) return;
@@ -175,6 +248,7 @@
         currentLang = lang;
 
         document.documentElement.lang = t.htmlLang;
+        document.documentElement.dir = t.rtl ? "rtl" : "ltr";
         document.title = pageTitle(t.titleSuffix);
 
         var meta = document.querySelector('meta[name="description"]');
@@ -263,10 +337,10 @@
         windowEl.addEventListener("keydown", function (e) {
             if (e.key === "ArrowLeft") {
                 e.preventDefault();
-                cycleLang(-1);
+                cycleLang(document.documentElement.dir === "rtl" ? 1 : -1);
             } else if (e.key === "ArrowRight") {
                 e.preventDefault();
-                cycleLang(1);
+                cycleLang(document.documentElement.dir === "rtl" ? -1 : 1);
             }
         });
     }
@@ -320,6 +394,7 @@
         });
     }
 
+    buildCarousel();
     var init = initialLang();
     apply(init.lang, init.persist);
     setCarouselPosition(init.lang, false);
