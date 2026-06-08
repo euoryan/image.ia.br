@@ -250,6 +250,30 @@
         });
     }
 
+    function positionPickerMenu() {
+        var toggle = document.querySelector("[data-lang-picker-toggle]");
+        var menu = document.querySelector("[data-lang-picker-menu]");
+        if (!toggle || !menu || menu.hidden) return;
+
+        menu.classList.remove("is-drop-up", "is-align-left");
+
+        var tr = toggle.getBoundingClientRect();
+        var mr = menu.getBoundingClientRect();
+        var gap = 6;
+        var pad = 8;
+        var spaceBelow = window.innerHeight - tr.bottom - gap - pad;
+        var spaceAbove = tr.top - gap - pad;
+
+        if (mr.height > spaceBelow && spaceAbove > spaceBelow) {
+            menu.classList.add("is-drop-up");
+            mr = menu.getBoundingClientRect();
+        }
+
+        if (mr.right > window.innerWidth - pad) {
+            menu.classList.add("is-align-left");
+        }
+    }
+
     function closePicker() {
         var root = document.querySelector("[data-lang-picker]");
         var toggle = document.querySelector("[data-lang-picker-toggle]");
@@ -258,6 +282,7 @@
         root.classList.remove("is-open");
         toggle.setAttribute("aria-expanded", "false");
         menu.hidden = true;
+        menu.classList.remove("is-drop-up", "is-align-left");
     }
 
     function openPicker() {
@@ -269,6 +294,9 @@
         toggle.setAttribute("aria-expanded", "true");
         menu.hidden = false;
         updatePickerActive(currentLang);
+        requestAnimationFrame(function () {
+            positionPickerMenu();
+        });
     }
 
     function bindPicker() {
@@ -292,6 +320,14 @@
         document.addEventListener("keydown", function (e) {
             if (e.key === "Escape") closePicker();
         });
+
+        window.addEventListener("resize", function () {
+            positionPickerMenu();
+        });
+
+        window.addEventListener("scroll", function () {
+            positionPickerMenu();
+        }, true);
     }
 
     function setCarouselPosition(lang, animate) {
