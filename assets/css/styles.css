@@ -342,19 +342,19 @@ button.email-copy.is-copied .email-copy__icon .icon-copied {
 }
 
 .lang-picker__toggle .icon-chevron-up {
-    opacity: 1;
+    opacity: 0;
 }
 
 .lang-picker__toggle .icon-chevron-down {
-    opacity: 0;
+    opacity: 1;
 }
 
 .lang-picker__toggle[aria-expanded="true"] .icon-chevron-up {
-    opacity: 0;
+    opacity: 1;
 }
 
 .lang-picker__toggle[aria-expanded="true"] .icon-chevron-down {
-    opacity: 1;
+    opacity: 0;
 }
 
 .lang-picker__menu {
